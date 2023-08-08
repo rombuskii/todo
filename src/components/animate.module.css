@@ -1,0 +1,59 @@
+
+
+.goright {
+    right: auto;
+    animation: go-right 0.5s linear normal forwards;
+}
+
+.goleft {
+    right: 0.8rem;
+    animation: go-left 0.5s linear normal forwards;
+  }
+
+@keyframes go-right {
+    0% {
+        right: 2.6rem;
+    }
+    1% {
+        right:2.3rem;
+    }
+    20% {
+        right:2rem
+    }
+    40% {
+        right:1.5rem
+    }
+    60% {
+        right:1.0rem;
+    }
+    80% {
+        right:0.8rem;
+    }
+    100% {
+        right: 0.7rem
+    }
+}
+
+@keyframes go-left {
+    0% {
+        right:0.7rem;
+    }
+    1% {
+        right:0.7rem;
+    }
+    20% {
+        right:1.0rem;
+    }
+    40% {
+        right:1.5rem;
+    }
+    60% {
+        right:2rem;;
+    }
+    80% {
+        right: 2.3rem;
+    }
+    100% {
+        right: 2.6rem;
+    }
+}
