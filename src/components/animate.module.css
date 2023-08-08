@@ -1,4 +1,6 @@
-
+.begreen {
+    animation: be-green 5s linear normal forwards;
+}
 
 .goright {
     right: auto;
@@ -9,6 +11,20 @@
     right: 0.8rem;
     animation: go-left 0.5s linear normal forwards;
   }
+
+@keyframes be-green {
+    0% {
+        color: 'green'
+    }
+    
+    50% {
+        color: 'red'
+    }
+
+    100% {
+        color: 'black'
+    }
+}
 
 @keyframes go-right {
     0% {

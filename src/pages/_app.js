@@ -7,6 +7,8 @@ export default function App({ Component, pageProps }) {
     <AuthProvider>
     <ThemeProvider>
       <title>TODO.</title>
+      <link rel="icon" href="/favicon.ico"/>
+      <div id="portal"></div>
     <Layout>
       <Component {...pageProps} />
     </Layout>

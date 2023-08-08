@@ -3,6 +3,7 @@ import { useAuth } from '@/context/AuthContext'
 import Editable from './Editable';
 import { db } from '../../firebase';
 import {doc, getDoc, updateDoc, arrayRemove, arrayUnion, setDoc}from 'firebase/firestore'
+import styles from './animate.module.css'
 
 
 
@@ -92,7 +93,8 @@ const UserDashboard = ({todos}) => {
         const docRef = doc(db, "todos", currentUser.uid)
         await updateDoc(docRef, {entries: copy})
         setNotes(copy)
-        alert('Note Saved')
+        document.getElementById('save-icon').style.cssText = 'color: #90EE90'
+        setTimeout(() => {document.getElementById('save-icon').style.cssText = 'color: black'}, 2000)
     }
 
     const remove = async(e) => {
@@ -108,7 +110,6 @@ const UserDashboard = ({todos}) => {
         setText('')
         setCurrent(null)
         setDisplay(filtered)
-        alert('Note Deleted')
     }
 
     const changeTitle =  async(e, new_title) => {
@@ -138,20 +139,20 @@ const UserDashboard = ({todos}) => {
     }
 
   return (
-    <div className={listVisibility ? 'w-screen grid grid-cols-2' : 'w-screen grid grid-cols-1'}>
+    <div className={listVisibility ? 'w-screen grid grid-cols-2 gap-x-1' : 'w-screen grid grid-cols-1'}>
         <div className={listVisibility ? 'flex h-screen flex-col' : 'hidden'}>
             <div className='text-md lg:text-xl border-2 flex justify-between items-center p-1'>
                 <h3>Notes</h3>
                 <form onSubmit={probe}>
-                <input value={search} onChange={e => setSearch(e.target.value)} placeholder='Search...' className='p-1 text-sm w-full max-w-[10ch] gap-x-1 lg:max-w-[30ch]'/>
+                <input value={search} onChange={e => setSearch(e.target.value)} placeholder='Search...' className='text-black outline-none p-1 text-sm w-full max-w-[10ch] gap-x-1 lg:max-w-[40ch]'/>
                 </form>
-                <i onClick={showForm} className="fa-solid duration-300 hover:scale-110 cursor-pointer fa-plus"></i>
+                <i onClick={showForm} className="fa-solid duration-300 hover:text-yellow-400 hover:scale-110 cursor-pointer fa-plus"></i>
             </div>
             <div className='flex-1 flex flex-col gap-y-2 border-2 p-1 h-full w-full overflow-auto'>
                 <form onSubmit={createNote} className={hidden ? 'hidden' : 'p-1 flex items-center gap-x-3'}>
-                    <input ref={titleRef} value={title} onChange={e => setTitle(e.target.value)} placeholder='Title...' className='p-1 rounded-xl w-full max-w-[10ch] lg:max-w-[40ch]'></input>
-                    <i onClick={createNote} className="fa-solid fa-check bg-black p-1 rounded-full border-2 duration-300 hover:bg-white cursor-pointer"></i>
-                    <i onClick={e => setHidden(prev => !prev)} className="fa-solid fa-xmark bg-black p-1 rounded-full border-2 duration-300 hover:bg-white cursor-pointer"></i>
+                    <input ref={titleRef} value={title} onChange={e => setTitle(e.target.value)} placeholder='Title...' className='text-black p-1 rounded-xl w-full max-w-[10ch] lg:max-w-[40ch]'></input>
+                    <i onClick={createNote} className="fa-solid fa-check dark:bg-black p-1 rounded-full border-2 duration-300 hover:bg-gray-300 dark:hover:bg-white dark:hover:text-black cursor-pointer"></i>
+                    <i onClick={e => setHidden(prev => !prev)} className="fa-solid fa-xmark dark:bg-black p-1 rounded-full border-2 duration-300 hover:bg-gray-300 dark:hover:bg-white dark:hover:text-black cursor-pointer"></i>
                     {msg}
                 </form>
                 <div className='overflow-auto'>
@@ -168,12 +169,12 @@ const UserDashboard = ({todos}) => {
                 </div>
             </div>
         </div>
-        <div className='flex h-screen flex-col'>
-        <div className='flex justify-start items-center p-1 border-2'>
+        <div className='flex h-screen  flex-col'>
+        <div className='flex justify-start items-center border-2 p-1'>
             <h3 className='flex-1 uppercase text-center'>{current?.title}</h3>
             <i onClick={e => setListVisibility(prev => !prev)} className="mr-2 duration-300 hover:scale-110 cursor-pointer lg:text-xl fa-solid fa-expand"></i>
-            </div>
-        <textarea value={text} onChange={e => setText(e.target.value)} disabled={current == null} className='w-screen outline-none bg-gray-500 border-2 border-white h-screen overflow-scroll break-all p-1 align-top'></textarea>
+        </div>
+        <textarea value={text} onChange={e => setText(e.target.value)} disabled={current == null} className='border-b-2 border-l-2 border-t-2 outline-none dark:bg-black h-screen overflow-scroll break-all p-1 align-top'></textarea>
         </div>
     </div>
   )
