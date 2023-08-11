@@ -144,13 +144,13 @@ const UserDashboard = ({todos}) => {
             <div className='text-md lg:text-xl border-2 flex justify-between items-center p-1'>
                 <h3>Notes</h3>
                 <form onSubmit={probe}>
-                <input value={search} onChange={e => setSearch(e.target.value)} placeholder='Search...' className='text-black outline-none p-1 text-sm w-full max-w-[10ch] gap-x-1 lg:max-w-[40ch]'/>
+                <input value={search} onChange={e => setSearch(e.target.value)} placeholder='Search...' className='dark:text-white dark:bg-black text-black outline-none p-1 text-sm w-full max-w-[10ch] gap-x-1 lg:max-w-[40ch]'/>
                 </form>
                 <i onClick={showForm} className="fa-solid duration-300 hover:text-yellow-400 hover:scale-110 cursor-pointer fa-plus"></i>
             </div>
             <div className='flex-1 flex flex-col gap-y-2 border-2 p-1 h-full w-full overflow-auto'>
                 <form onSubmit={createNote} className={hidden ? 'hidden' : 'p-1 flex items-center gap-x-3'}>
-                    <input ref={titleRef} value={title} onChange={e => setTitle(e.target.value)} placeholder='Title...' className='text-black p-1 rounded-xl w-full max-w-[10ch] lg:max-w-[40ch]'></input>
+                    <input ref={titleRef} value={title} onChange={e => setTitle(e.target.value)} placeholder='Title...' className='dark:text-white dark:bg-black text-black p-1 rounded-xl w-full max-w-[10ch] lg:max-w-[40ch]'></input>
                     <i onClick={createNote} className="fa-solid fa-check dark:bg-black p-1 rounded-full border-2 duration-300 hover:bg-gray-300 dark:hover:bg-white dark:hover:text-black cursor-pointer"></i>
                     <i onClick={e => setHidden(prev => !prev)} className="fa-solid fa-xmark dark:bg-black p-1 rounded-full border-2 duration-300 hover:bg-gray-300 dark:hover:bg-white dark:hover:text-black cursor-pointer"></i>
                     {msg}
